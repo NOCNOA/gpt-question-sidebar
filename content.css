@@ -1,0 +1,93 @@
+#cq-sidebar {
+  position: fixed;
+  top: 72px;
+  right: 16px;
+  width: 280px;
+  max-height: calc(100vh - 96px);
+  z-index: 999999;
+  background: rgba(32, 33, 35, 0.96);
+  color: #f5f5f5;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  overflow: hidden;
+}
+
+#cq-sidebar-header {
+  padding: 12px 14px 8px;
+  font-size: 15px;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#cq-search {
+  width: calc(100% - 28px);
+  margin: 10px 14px;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  outline: none;
+  font-size: 13px;
+}
+
+#cq-search::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+#cq-list {
+  padding: 0 10px 12px;
+  max-height: calc(100vh - 180px);
+  overflow-y: auto;
+}
+
+.cq-item {
+  width: 100%;
+  text-align: left;
+  padding: 9px 10px;
+  margin-bottom: 8px;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.08);
+  color: #f5f5f5;
+}
+
+.cq-item:hover {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.cq-index {
+  font-size: 12px;
+  opacity: 0.65;
+  margin-bottom: 4px;
+}
+
+.cq-text {
+  font-size: 13px;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.cq-empty {
+  padding: 16px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.cq-flash {
+  outline: 2px solid #7aa2ff !important;
+  border-radius: 10px;
+}
+
+#cq-sidebar-header {
+  cursor: grab;
+  user-select: none;
+}
+
+#cq-sidebar-header:active {
+  cursor: grabbing;
+}
