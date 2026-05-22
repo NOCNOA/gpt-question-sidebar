@@ -91,3 +91,41 @@
 #cq-sidebar-header:active {
   cursor: grabbing;
 }
+
+#cq-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: grab;
+  user-select: none;
+}
+
+#cq-title {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+#cq-collapse-btn {
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.12);
+  color: #f5f5f5;
+  font-size: 16px;
+  line-height: 1;
+}
+
+#cq-collapse-btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+#cq-sidebar.cq-collapsed {
+  max-height: none;
+}
+
+#cq-sidebar.cq-collapsed #cq-search,
+#cq-sidebar.cq-collapsed #cq-list {
+  display: none;
+}

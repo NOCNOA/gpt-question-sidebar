@@ -11,9 +11,21 @@
     const sidebar = document.createElement("aside");
     sidebar.id = SIDEBAR_ID;
 
-    const header = document.createElement("div");
-    header.id = "cq-sidebar-header";
-    header.textContent = "提问导航";
+const header = document.createElement("div");
+header.id = "cq-sidebar-header";
+
+const title = document.createElement("div");
+title.id = "cq-title";
+title.textContent = "提问导航";
+
+const collapseBtn = document.createElement("button");
+collapseBtn.id = "cq-collapse-btn";
+collapseBtn.type = "button";
+collapseBtn.title = "收起/展开";
+collapseBtn.textContent = "−";
+
+header.appendChild(title);
+header.appendChild(collapseBtn);
 
     const search = document.createElement("input");
     search.id = "cq-search";
@@ -30,8 +42,11 @@
     sidebar.appendChild(search);
     sidebar.appendChild(list);
     document.body.appendChild(sidebar);
+
     restoreSidebarPosition(sidebar);
+    restoreSidebarCollapsed(sidebar, collapseBtn);
     makeSidebarDraggable(sidebar, header);
+    makeSidebarCollapsible(sidebar, collapseBtn);
   }
 
   function isVisible(el) {
@@ -172,9 +187,10 @@ function makeSidebarDraggable(sidebar, handle) {
   let startY = 0;
   let startLeft = 0;
   let startTop = 0;
+handle.addEventListener("pointerdown", (e) => {
+  if (e.target.closest("#cq-collapse-btn")) return;
 
-  handle.addEventListener("pointerdown", (e) => {
-    isDragging = true;
+  isDragging = true;
 
     const rect = sidebar.getBoundingClientRect();
 
@@ -235,5 +251,29 @@ function makeSidebarDraggable(sidebar, handle) {
 
   handle.addEventListener("pointercancel", () => {
     isDragging = false;
+  });
+}
+
+function restoreSidebarCollapsed(sidebar, button) {
+  const collapsed = localStorage.getItem("cq-sidebar-collapsed") === "true";
+
+  if (collapsed) {
+    sidebar.classList.add("cq-collapsed");
+    button.textContent = "+";
+  } else {
+    sidebar.classList.remove("cq-collapsed");
+    button.textContent = "−";
+  }
+}
+
+function makeSidebarCollapsible(sidebar, button) {
+  button.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    const collapsed = sidebar.classList.toggle("cq-collapsed");
+
+    button.textContent = collapsed ? "+" : "−";
+
+    localStorage.setItem("cq-sidebar-collapsed", String(collapsed));
   });
 }
